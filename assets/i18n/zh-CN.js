@@ -1,10 +1,15 @@
 ﻿$('body').css("font-family", "'Microsoft YaHei', 'Microsoft JhengHei', SimSun");
 
 $i18n = {
+  "Beginner":"入门",
+  "Professional":"专家",
+  "Developer":"开发",
+  " Mode":"模式",
   "Getting Started":"准备",
   "Project":"工程",
   "Customize":"定制",
   "Building":"构建",
+  "Settings":"设置",
   "About":"关于",
   "Quick build":"快速构建",
   "build(cmd)":"CMD模式",
@@ -12,15 +17,18 @@ $i18n = {
   "Browse...":"浏览...",
   "<strong>INFO</strong>:You can set the default settings in 'config.js', and your selection will auto save in 'auto_config.js', make you start quickly for next time. If you want to modify the settings later, use the left-side navigition menu to show this page.":
       "<strong>温馨提示</strong>:您可以在\"config.js\"文件中配置默认路径，程序也会自动将选择的设定保存到\"auto_config.js\"中，以便于快速开始。您可以通过左侧的导航菜单再次改变这些设定。",
+  "<strong>INFO</strong>:Current mode is 'Beginner', you can change the mode in 'Settings' page.":
+      "<strong>温馨提示</strong>:当前处于入门模式，您可以在[设定]页面更改模式。",
   "Please configure the base infomation:":"请设置基本信息:",
   "Set the build workspace":"设置工作空间位置",
   "Select build workspace folder:":"选择工作空间位置:",
+  "Please select the mounted Windows ISO drive(eg. H:\\)":"请选择Windows镜像所加载的驱动器(例如 H:\\)",
   "Please select the Windows ISO folder/drive, or the 'sources' folder(auto detect)":"请选择Windows镜像路径，或者sources目录(智能识别)",
   "Select the image path or the 'sources' folder":"请选择Windows镜像路径，或者sources目录",
   "Auto extract the winre.wim":"自动提取winre.wim",
-  "<strong>INFO</strong>:the install.wim isn't exist.":"<strong>提示</strong>:install.wim文件不存在。",
+  "<strong>INFO</strong>:The install.wim does not exist.":"<strong>提示</strong>:install.wim文件不存在。",
   "Select the install.wim file if it needed":"如有必要，请选择install.wim源文件",
-  "<strong>ERROR</strong>:the base wim isn't exist.":"<strong>错误</strong>:所需修改wim文件不存在。",
+  "<strong>ERROR</strong>:The base wim does not exist.":"<strong>错误</strong>:所需修改wim文件不存在。",
   "Select the extracted install.wim folder if it needed":"如有必要，请选择install.wim的展开目录",
   "Select the extracted install.wim folder:":"选择install.wim的展开目录:",
   "Select the base image(boot.wim/winre.wim or other customed.wim)":"请选择基础映像(boot.wim/winre.wim或者其他自定义wim文件)",
@@ -36,6 +44,12 @@ $i18n = {
   "default":"默认",
   "demand":"手动",
   "full":"全功能",
+  "Save As...":"另存为...",
+  "SaveAs Preset":"预设 另存为",
+  "New Name:":"新预设名:",
+  "Saved Presets:":"已有预设:",
+  "Save":"保存",
+  "This preset couldn't work in Beginner Mode.":"此预设无法在入门模式下使用。",
   "OpenFolder":"打开文件夹",
   "Edit main.bat":"编辑 main.bat",
   "Edit last.bat":"编辑 last.bat",
@@ -65,6 +79,22 @@ $i18n = {
   "Please select a project:":"请选择工程:",
   "Project Information":"工程信息",
 
+  "Mode :":"模式 :",
+  "<strong>Beginner</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--- Just started using this software. Make the options be kind. Avoid failure due to incorrect option settings.":
+      "<strong>入门</strong> --- 刚开始使用本软件。将隐藏一些复杂选项，使得选项友好，避免因选项设定不正确导致失败。",
+  "<strong>Professional</strong> --- Knows this software well. Shows more options.":
+      "<strong>专家</strong> --- 清楚如何使用本软件及各选项含义。将提供更多选项。",
+  "<strong>Developer</strong> &nbsp;&nbsp;&nbsp;&nbsp;---  Knows the codes of this software, Shows the options for developer.":
+      "<strong>开发</strong> ---  清楚本软件的结构及代码, 将提供面向开发者的选项。",
+  "Language :":"语言 :",
+  "Theme :":"主题 :",
+  "Auto":"自动",
+  "None":"无",
+  "High":"高",
+  "Custom":"自定义",
+  "Restart to apply changes to your settings?":"立即重新启动以应用最新设置？",
+  "Yes":"是",
+  "No":"否",
 
   "Please startup with WimBuilder.cmd.":"请通过WimBuilder.cmd启动。",
   "No project to build.":"未选择构建工程。",

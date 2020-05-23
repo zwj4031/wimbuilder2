@@ -27,7 +27,7 @@ var $patches_opt = {
     "slim.small_fonts":true,
     "slim.small_imageresdll":true,
     "slim.safe":true,
-    "slim.ultra":true,
+    "slim.extra":true,
     "_._._":""
 };
 
@@ -35,11 +35,12 @@ var $patches_opt = {
 function patches_state_init() {
     open_tree_node('00-Configures');
     uncheck_tree_node('02-Apps');
+    uncheck_tree_node('02-PEMaterial');
     uncheck_tree_node('01-Components');
     check_tree_node('01-Components/00-Shell');
     open_tree_node('01-Components');
     uncheck_tree_node('01-Drivers');
-    check_tree_node('za-SlimExtra');
+    check_tree_node('za-SlimUltra');
 
     select_tree_node('00-Configures/Build');
 }

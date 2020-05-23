@@ -7,8 +7,8 @@ var Project = {
         project.name = name;
         project.path = Project.root_path + '/' + name;
         project.uri = project.path;
-        project.wb_root = $wb_root.replace(/\\/g, '/');
-        project.full_path = project.wb_root + '/' + project.path;
+        project.app_root = $app_root.replace(/\\/g, '/');
+        project.full_path = project.app_root + '/' + project.path;
         project.full_uri = project.full_path;
         project.full_path = project.full_path.replace(/\//g, '\\');
         project.style = project.path + '/_Assets_/style.css';
@@ -22,6 +22,9 @@ var Project = {
         project.load_html = function() {
             return load_file('_Assets_/intro.html');
         };
+        project.load_presets = function() {
+            return get_files(project.path + '/_Assets_/preset');
+        };
         project.desc = project.load_desc();
         project.html = project.load_html();
         var $patches_opt = {};
@@ -30,7 +33,7 @@ var Project = {
         if (preset) {
             $patches_preset = preset;
         }
-        project.presets = get_files(project.path + '/_Assets_/preset');
+        project.presets = project.load_presets();
         project.preset = '-';
         if ($patches_preset != '') {
             eval(load_file('_Assets_/preset/' + $patches_preset + '.js'));
@@ -62,24 +65,31 @@ var Project = {
                     var def_conf = load_utf8_file(cdir + '/' + name + '/en-US.js');
                     var i18n = load_utf8_file(cdir + '/' + name + '/' + $lang + '.js');
 
+                    var patch_name = null;
+                    var patch_opened = null;
+                    var patch_selected = null;
+                    var patch_hidden = false;
                     // fallback
                     if (i18n == '') {
                         i18n = def_conf;
                     } else {
                         i18n = def_conf + '\r\n' + i18n;
                     }
-                    if (i18n != '') {
-                        var patch_name = null;
-                        var patch_opened = null;
-                        var patch_selected = null;
-                        eval(i18n);
-                        if (patch_name != null) name = patch_name;
-                        if (patch_opened != null) state_opened = patch_opened;
-                        if (patch_selected != null) state_selected = patch_selected;
+                    if (i18n != '') eval(i18n);
+
+                    if (patch_hidden) {
+                        fenum.moveNext();
+                        continue;
+                    }
+
+                    if (patch_name != null) {
+                        name = patch_name;
                     } else {
                         var pos = name.indexOf('-');
                         if (pos >= 0) name = name.substring(pos + 1);
                     }
+                    if (patch_opened != null) state_opened = patch_opened;
+                    if (patch_selected != null) state_selected = patch_selected;
 
                     var item = { "id" : cid , "parent" : pid, "text" : name,
                      "state": {opened: state_opened, checked: state_selected} };
@@ -106,13 +116,23 @@ function set_default_preset(project, preset) {
 }
 
 function init_current_preset(project) {
-    if (!$wb_save_current_preset) return;
+    if (!$app_save_current_preset) return;
     project.current_preset_path = project.full_path + '/_Assets_/preset/current.js';
     if (!fso.FileExists(project.current_preset_path)) {
         fso.CopyFile(project.full_path + '/_Assets_/preset/' + $patches_preset + '.js',
         project.current_preset_path);
     }
     $patches_preset = 'current';
+}
+
+function saveas_current_preset(project, name) {
+    if (!$app_save_current_preset) return;
+    if (fso.FileExists(project.current_preset_path)) {
+        fso.CopyFile(project.current_preset_path, project.full_path + '/_Assets_/preset/' + name + '.js');
+        // update presets
+        project.presets = project.load_presets();
+        update_preset_list(true);
+    }
 }
 
 function pj_button(name) {

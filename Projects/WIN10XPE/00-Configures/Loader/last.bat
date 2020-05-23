@@ -40,7 +40,7 @@ call :DELEX "/f /q /a" "%X_SYS%\winpeshl.ini"
 if exist "%X_PEMaterial%\startnet.cmd" move /y "%X_PEMaterial%\startnet.cmd" "%X_SYS%\"
 
 rem update startnet.cmd
-if "x%opt[slim.ultra]%"=="xtrue" (
+if "x%opt[slim.extra]%"=="xtrue" (
     call TextReplace "%X_SYS%\startnet.cmd" "wpeinit" "rem wpeinit"
 )
 :STARTUP_ENTRY_END
@@ -54,6 +54,9 @@ if not "x%opt[support.network]%"=="xtrue" (
     rem init network on booting
     call TextReplace "%X_SYS%\unattend.xml" "EnableNetwork>false</EnableNetwork" "EnableNetwork>true</EnableNetwork"
 )
+
+call :DELEX "/f /q /a" "%X_PEMaterial%\LogonAdmin.bat"
+call :DELEX "/f /q /a" "%X_PEMaterial%\SwitchUser.bat"
 
 goto :EOF
 

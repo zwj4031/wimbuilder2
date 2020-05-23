@@ -5,21 +5,30 @@ goto :end_files
 
 @\Windows\System32\
 setx.exe
-@-
 
 ; ncsi.dll.mui is not included in winre.wim
 \Windows\System32\??-??\ncsi.dll.mui
 
 \Windows\System32\??-??\Windows.CloudStore.dll.mui
 
-; Possible Addition   \Windows\System32\umpowmi.dll
-\Windows\System32\umpoext.dll
+; Possible Addition umpowmi.dll
+umpoext.dll
 
 ; Power management - In Winre.wim system32:powrprof.dll,workerdd.dll
-Windows\System32\powercfg.cpl
-Windows\System32\powercpl.dll
+powercfg.cpl
+powercpl.dll
 
 \Windows\Fonts\segoeui.ttf
+
++if %VER[3]% > 19550 And %VER[3]% < 19587
+@\Windows\Fonts\
++if "%WB_PE_LANG%"="zh-CN" Or "%WB_PE_LANG%"="zh-TW"
+mingliu.ttc
+msyh.ttc
+simsun.ttc
+-if
+-if
+
 :end_files
 
 call AddDrivers winusb.inf
@@ -81,6 +90,8 @@ reg add HKLM\Tmp_System\ControlSet001\Control\Lsa /v LimitBlankPasswordUse /t RE
 reg add "HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\ProfileList\S-1-5-18" /v ProfileImagePath /d X:\Users\Default /f
 rem // Disable Telemetry
 reg add HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection /v AllowTelemetry /t REG_DWORD /d 0 /f
+
+reg add "HKLM\Tmp_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Segoe UI (TrueType)" /d segoeui.ttf /f
 
 if "x%opt[build.registry.software]%"=="xfull" (
   call :EditReg_FullSoftware

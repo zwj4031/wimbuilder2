@@ -30,6 +30,24 @@ INIT-->
 <legend>Shell</legend>
 <label><input type="radio" class="opt_item" name="shell.app" value="explorer" checked="checked" /> Explorer</label>
 <label><input type="radio" class="opt_item" name="shell.app" value="winxshell" /> WinXShell</label>
+<br/><br/>
+<span style="float:left;">Use Theme Color</span>
+<div class="onoffswitch"  style="float:right;">
+    <input type="checkbox" name="shell.use_theme_color" class="onoffswitch-checkbox opt_item" id="shell.use_theme_color">
+    <label class="onoffswitch-label" for="shell.use_theme_color">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+<br/><br/>
+<span style="float:left;">Use Light Theme</span>
+<div class="onoffswitch"  style="float:right;">
+    <input type="checkbox" name="shell.light_theme" class="onoffswitch-checkbox opt_item" id="shell.light_theme">
+    <label class="onoffswitch-label" for="shell.light_theme">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
 </fieldset>
 
 <fieldset>
@@ -44,7 +62,7 @@ INIT-->
 <div style="float:right;margin-right:20px;">
 <fieldset>
 <legend>Desktop</legend>
-<span style="float:left;padding-top:5px;">Show This PC on Desktop</span>
+<span style="float:left;">Show This PC on Desktop</span>
 <div class="onoffswitch"  style="float:right;">
     <input type="checkbox" name="shell.show_thisPC" class="onoffswitch-checkbox opt_item" id="shell.show_thisPC" checked>
     <label class="onoffswitch-label" for="shell.show_thisPC">
@@ -52,6 +70,21 @@ INIT-->
         <span class="onoffswitch-switch"></span>
     </label>
 </div>
+<br/>
+<br/>
+<span style="float:left;">Show Recycle Bin on Desktop</span>
+<div class="onoffswitch"  style="float:right;">
+    <input type="checkbox" name="shell.show_recyclebin" class="onoffswitch-checkbox opt_item" id="shell.show_recyclebin" checked>
+    <label class="onoffswitch-label" for="shell.show_recyclebin">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+<br/>
+<br/>
+<label><input type="radio" class="opt_item" name="desktop.iconsize" value="96"> Large icons</input></label><br/>
+<label><input type="radio" class="opt_item" name="desktop.iconsize" value="48"> Medium icons</input></label><br/>
+<label><input type="radio" class="opt_item" name="desktop.iconsize" value="32"> Small icons</input></label><br/>
 </fieldset>
 
 <fieldset style="font-size:0.8em;">

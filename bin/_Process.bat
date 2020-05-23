@@ -1,6 +1,10 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
 
+set "WB_ROOT=%APP_ROOT%"
+set "WB_ARCH=%APP_ARCH%"
+set "WB_HOST_LANG=%APP_HOST_LANG%"
+
 cd /d "%WB_ROOT%\"
 title WimBuilder(%cd%)
 
@@ -12,6 +16,10 @@ if "x%WB_RUNAS_TI%"=="x" (
 )
 
 title WimBuilder(%cd%)
+
+if "x%_WB_EXEC_MODE%"=="x1" (
+  title WimBuilder^(%cd%^) - Don't close this console window while building
+)
 
 call DisAutoRun
 
@@ -29,6 +37,9 @@ if "x%WB_PROJECT%"=="x" call :NO_ENV_CONF WB_PROJECT
 set "LOGFILE=%Factory%\log\%WB_PROJECT%\%LOGSUFFIX%.log"
 call :MKPATH "%LOGFILE%"
 rem type nul>"%LOGFILE%"
+
+set BUILD_LOGTIME=%LOGSUFFIX%
+set "BUILD_LOGNAME=%BUILD_LOGTIME%_Build[LOG]_%WB_PROJECT%.log"
 
 if "x%WB_BASE%"=="x" call :NO_ENV_CONF WB_BASE
 set _WB_BASE_EXTRACTED=0
@@ -73,6 +84,8 @@ echo.
 rem ";" can't be pass to CALL LABEL, so use a ":" for it
 call :CLOG 97:104m "[%WB_PROJECT%] --- build information"
 set WB_
+echo.
+set BUILD_
 echo.
 
 rem extract winre.wim from install.wim
@@ -215,9 +228,10 @@ call ApplyProjectPatches.bat "%WB_PROJECT_PATH%"
 rem =========================================================
 
 cd /d "%WB_ROOT%\"
+if "x%_WB_UNMOUNT_DEMAND%"=="x1" goto :UNMOUNT_END
 call :CLEANUP 0
 call WIM_Exporter "%_WB_PE_WIM%"
-
+:UNMOUNT_END
 
 set TIMER_END=
 for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs"') do set TIMER_END=%%t
@@ -225,6 +239,12 @@ for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs"') do se
 set TIMER_ELAPSED=
 for /f "delims=" %%t in ('cscript.exe //nologo "%WB_ROOT%\bin\Timer.vbs" "%TIMER_START%" "%TIMER_END%"') do set TIMER_ELAPSED=%%t
 call :cecho PHRASE "%TIMER_END% - Building completed in %TIMER_ELAPSED% seconds."
+
+if "x%BUILD_LOGNAME%"=="x" goto :EOF
+if not "x%_WB_EXEC_MODE%"=="x1" goto :EOF
+pushd "%WB_ROOT%\_Factory_\log\%WB_PROJECT%\"
+copy /y /b %BUILD_LOGTIME%.log+last_wimbuilder.log "%BUILD_LOGNAME%"
+popd
 
 goto :EOF
 

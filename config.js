@@ -1,8 +1,11 @@
 $width = 1200;
 $height = 800;
-$wb_auto_save_window_size = true;
+$app_auto_save_window_size = true;
 
 $lang = '';
+
+$ui_settings['lang'] = $lang;
+$ui_settings['theme'] = '';
 
 $wb_src_folder = '';
 $wb_src = '';

@@ -1,88 +1,200 @@
-# ������ʷ��¼
+# 更新历史记录
+
+## WimBuilder2 v2020.05.05
+这是一个常规更新。添加和改善了以下内容:
+
+* 修复 WIN7下老版本IE无法打开问题。
+* 修复 网络发现缺失的注册表项目，导致个别菜单无法显示问题。
+* 修复 电源托盘图标显示不正确的问题。
+* 修复 App宏无法下载文件的问题。
+* 新增 【PE外置集】-【网络工具】- Chrome。
+* 新增 【组件】-【Windows 附件】- 写字板。
+* 修复 开始菜单中系统目录及程序快捷方式显示英文的问题。
+* 改进 PPPoE支持。支持通过命令行进行拨号连接。
+* 修复 【PE外置集】将部分程序复制到错误位置的问题。
+* 新增 【设置】-【模式】选项。
+       入门模式 - 刚开始使用本软件。将隐藏一些选项，使得选项友好，避免因选项设定不正确导致失败。
+       专家模式 - 清楚如何使用本软件及各选项含义。将提供更多选项。
+       开发模式 - 清楚本软件的结构及代码, 将提供面向开发者的选项。 
+* 修复 在非简体中文系统环境中使用时无法构建的问题。
+* 修复 zh-TW语言镜像构建后部分界面显示乱码问题(强制保留mingliu字体)。
+* 修复 个别定制节点在非中文环境下，总是显示文件夹名的问题。
+* 改善 禁用驱动数字签名验证处理，以支持新的Windows版本。
+* 改善 繁体注音输入法依赖。不再依赖完整SOFTWARE注册表。
+* 新增 麦克风设备支持。 (感谢 @noelBlanc)
+* 新增 【手动加载基本显卡驱动】选项。 (感谢 @立邦电子)
+
+## WimBuilder2 v2020.04.04
+这是一个主要更新。添加和改善了以下内容:
+
+* 新增 手动卸载 命令。便于构建后，直接进行二次修改省去挂载时间。
+* 新增 导入 aria2 下载工具。支持第三方工具从官方下载。
+* 新增 _V-64， _V_64 环境变量。便于匹配官方安装文件名。
+* 新增 各存储设备上外置资源加载（可设置为手动加载）。
+* 改善 解压工具从7za.exe改为7z.exe，支持解压更多文件格式。
+* 新增 App.cmd 宏命令。支持下载第三方软件。
+* 新增 外置资源包。
+       可改变壁纸，程序关联，注册表优化。
+       直接绿色软件，官方安装包，自制精简压缩资源。
+       可选择放置在X盘，内置模式；放置到ISO光盘，只读模式；放置到其他驱动器，便携模式。
+* 改进 AddFiles宏。可指定提取install.wim文件到指定目录(特定软件的精简组件打包)。
+* 新增 是否在桌面显示回收站选项。
+* 修正 不设定开始菜单时，默认StartIsBack和ClassicShellMenu都安装的问题。
+* 新增 浅色主题设定。
+* 修复 强力精简导致，资源管理器中复制文件时发生错误问题。 (感谢 @王乐2518)
+* 改进 网络发现不需要完整SOFTWARE注册表。
+* 修复 英文PE的文字显示为斜体问题。 (感谢 @hikari_calyx)
+* 改进 网络发现支持不再需要完整的SOFTWARE。 (感谢 @Lightning)
+* 新增 网络和共享中心“设置新的连接或网络”向导功能。 (感谢 @Lightning)
+* 更新 WinXShell.exe 至 v4.3
+       LUA加载器：立即显示设备与打印机，蓝牙设备可快速直连。
+       外壳：支持自定义主题配色(内置: 蓝色，深色和浅色)。
+             直接接管系统音量和WIFI托盘指示图标，支持系统原生右键菜单。
+             开始菜单默认显示网络连接菜单，可直接修改适配器属性，拨号连接。
+             我的电脑属性默认显示系统属性界面。
+             -luacode简化为-code选项。
+             新增 wxs-ui, wxs-open 短命令协议接口。
+       UI组件：声音，WIFI，日历新增浅色主题风格。 (感谢 @826773297 提供浅色图标资源)
+               WIFI 组件新增PPPoE拨号连接，增加滚动条。
+               个性化设定界面，增加更多颜色相关设定选项。(Explorer.exe外壳有效)
+* 更新 StartIsBack 至 v2.9
+       修复20h1之后无法使用任务栏跳转菜单的问题。
+
+
+外置资源包包含:
+  NTBOOTAUTOFIX, SetupXP, UEfix, Notepad3
+  BOOTICE, CPU-Z, Dism++, Everything, NTPWEdit, WinNTSetup
+  SumatraPDF, Office 2007, Potplayer
+
+
+## WimBuilder2 v2020.03.03
+这是一个常规更新。添加和改善了以下内容:
+
+* 改进 强力精简时，保留Windows 任务管理器 所需的必要文件。
+* 修复 高分屏环境，定制界面无法正常显示的问题。
+* 新增 【设置】页面，可通过界面更改表示语言，主题，DPI设置。
+* 新增 手动卸载wim构建选项，以便直接进行二次修改，节省构建时间。
+* 新增 Windows Media Player 组件。
+   * Windows Media Player 组件需要使用完整的SOFTWARE，不需要依赖声音支持补丁。
+* 改进 对20H2预览版支持。补充字体文件修复显示问题。
+* 新增 ISO加载时，显示加载进度条选项。
+* 新增 桌面图标大小选项。
+* 新增 Classic Start Menu 开始菜单(Classic Shell v4.3.1)。
+* 新增 PPPoE拨号。
+* 改进 FBWF缓存大小，支持 128GB。
+* 新增 预创建Administrator用户配置文件选项。
+  * 解决使用WES的fbwf.sys时，系统无法自动创建用户配置文件的问题。
+* 改进 对20H2预览版支持。多用户登录功能适配最新预览版(10.0.19569.1000)。
+
+
+## WimBuilder2 v2020.01.01
+这是一个主要更新。添加和改善了以下内容:
+
+* 修复 繁体输入法不可用问题。 (感谢 @2012bear1alex1 测试与反馈)
+* 新增 输入法新增繁体输入法(注音，速成，仓颉)选项。
+* 修复 强力精简选项导致无线网络不能正常问题。
+* 改进 对20H2预览版支持。补档修复IE闪退问题。 (感谢 @James)
+* 调整 lua 函数(LINK, , PinToTaskbar, PinToStartmenu)到WinXShell\lua_helper\shell_helper.lua。
+* 调整 默认桌面，任务栏，开始菜单图标创建为自定义批处理生成(可删除)。
+   `Projects/WIN10XPE/_CustomFiles_/MyCustom/Last/_CustomDesktopItems.bat`
+* 改进 使用 构建(日志) 方式时，将保留历史构建日志文件。 (感谢 @Lancelot)
+* 新增 "预设另存为 ..." 按钮。
+* 调整 界面的显示样式。
+* 改进 wim文件卸载时，清理挂载点。 (感谢 @星体投射)
+* 新增 删除\sources文件夹精简选项。
+* 修复 SYSTEM用户无法使用开始菜单关机按钮问题。
+* 修复 当自动登录的确认时间设置为0秒时，无法正常登录问题。 (感谢 @Lancelot 测试与反馈)
+* 改进 启用Administrator帐户时，提示对install.wim的版本要求。 (感谢 @Lancelot 测试与反馈)
+* 修复 非中文系统下查看"我的主题"定制选项时出错问题。 (感谢 @Lancelot 测试与反馈)
+* 新增 主题设置选项(`$wb_settings['theme'] = '<主题名>'`@ config.js )。
+* 新增 `snow`主题(v2019.12.12版彩蛋)，`picture`主题(静态背景图)。
+* 新增 `春节(the_spring_festival)`主题(http://hello.wimbuilder.world 市场下载)。
+
 
 ## WimBuilder2 v2019.12.12
-����һ��������¡����Ӻ͸�������������:
+这是一个常规更新。添加和改善了以下内容:
 
-* �Ľ� ǿ��������������ִ�У�����ɾ�����������������ļ���
-* �Ľ� ǿ������ʱ���������������Administrator�û���Ҫ�ļ��� (��л @Lightning)
-* �Ľ� ��������ʹ�õķ����ע�����Ŀ��
-* �޸� ����USB�豸ʱ���豸����ʾ����ȷ���⡣(��л @Lightning)
-* �Ľ� �߼�����ѡ�
-* �޸� ������ѡ���д��ڶ���(,)ʱ������ҳ����ʾ����Ϣ����ȷ�����⡣
-* �Ľ� ������ģʽ�����ȴ�(--wait)��������������
-* �Ľ� ����Ԥ����������ϵͳ������ʾ��
-* ���� "��ǰ"����Ԥ�裬���Զ����浱ǰ�Ķ����趨��
-* �Ľ� ����Administrator�û�ʱ��������Ҫ������SOFTWAREע������������ע����ļ������
-* �Ľ� ����ǩ��У���ļ��������ϰ汾��֧��(14393 ltsb)�� (��л @liuzhaoyzz �����뷴��)
-* �޸� ʹ��WinXShell��Ϊ���ʱ�������ļ�����������ȷ����ʾ���ڵ����⡣ (��л @����Ͷ��)
-* �޸� ���������ļ��޷����ʵ����⡣ (��л @����Ͷ��)
-* �޸� ������ʱ�����ʱ��ҳ�浯���ű����л����ĶԻ�������⡣
-* �Ľ� �ṩ����ϵͳ���Ա���������������ϵͳ����ʱ������ѡ���Ĭ��ֵ��ʹ��Ӣ����Դ��ȷ����������������
-       (��������ϵͳ�£�����ͨ����config.js����������Ϊzh-CN��ʹ�ü������Ľ��档)
+* 改进 强力精简处理将优先执行，避免删除其他功能新增的文件。
+* 改进 强力精简时，保留启用网络和Administrator用户必要文件。 (感谢 @Lightning)
+* 改进 清理不可使用的服务的注册表项目。
+* 修复 弹出USB设备时，设备名显示不正确问题。(感谢 @Lightning)
+* 改进 高兼容性选项。
+* 修复 当定制选项中存在逗号(,)时，构建页面显示的信息不正确的问题。
+* 改进 命令行模式新增等待(--wait)构建结束参数。
+* 改进 内置预设名将根据系统语言显示。
+* 新增 "当前"内置预设，将自动保存当前的定制设定。
+* 改进 启用Administrator用户时，不再需要完整的SOFTWARE注册表，大幅减少注册表文件体积。
+* 改进 驱动签名校验文件处理对老版本的支持(14393 ltsb)。 (感谢 @liuzhaoyzz 测试与反馈)
+* 修复 使用WinXShell作为外壳时，复制文件不弹出覆盖确认提示窗口的问题。 (感谢 @星体投射)
+* 修复 符号链接文件无法访问的问题。 (感谢 @星体投射)
+* 修复 当构建时间过长时，页面弹出脚本运行缓慢的对话框的问题。
+* 改进 提供运行系统语言变量，界面语言与系统不符时，个别选项的默认值将使用英文资源，确保可以正常构建。
+       (繁体中文系统下，可以通过在config.js中设置语言为zh-CN来使用简体中文界面。)
+
 
 ## WimBuilder2 v2019.11.11
-����һ����Ҫ���¡����Ӻ͸�������������:
+这是一个主要更新。添加和改善了以下内容:
 
-* ���� Ghost15֧�ֲ�����(_CustomFiles_\MyCustom_Samples\Requirements_Ghost15.bat)
-* �޸� ʹ��zh-TWϵͳԴ����ʱ����ȫ����ѡ����Ч���޷���½Administrator�û������⡣
-* �޸� �����ϰ汾(<17763)ϵͳԴʱ������ϵͳ�ļ�û����ȡ���⡣
-* �޸� �����ϰ汾ϵͳԴʱ���ļ������޷��������⡣
-* ���� _CustomFiles_\MyCustom\LastĿ¼�����ײ������Է����ڴ�Ŀ¼��������main.bat��������á�
-* ���� _NavPaneShowAllFolders.bat �ļ���ѡ�����á�
-* ���� _NavPaneHideLibraries.bat �ļ���ѡ�����á�
-* �޸�  �޷���ϵͳ�и����ļ����ֻ�������(MTP)��
-* ���� ����ѡ��(ʹ�þ����imageres.dll)��
-* ���� _FileExplorerInSeparateProcess.bat��������ļ���Դ��������Ϊ���Խ������С�
-* �Ľ� ����������ϰ汾ϵͳ��֧�֡�
-* ���� _HighPerformancePowerScheme.bat����Դ������ʹ�ø�����ģʽ��
-* ���� _CustomVisualEffects.reg��ʹ���Զ����Ӿ�Ч����
-* �޸� StartIsBack������Ԥ�����е�����ǳ�����������⡣
-* ���� �豸���ӡ���������ӡ������֧�ֵ����°档
-* ���� �����нӿڣ���ͨ���Զ���������ϸ����������--help���в鿴��
-* �Ľ� �Զ��岹������������ѡ�
-* ���� 7-zip���棬����������չ��������
-* �޸� ����ѡ����֧��ʱ������ǽû�н������⡣
-* ���� _Assets_\style.css �ļ���֧�ָ��������湲ͬ��ʽ�����塣
-* ���� ImDisk�������������
-* �Ľ� ��Ựģʽ�¶���ǽ��̽����ػ���
-* ���� ɾ�� wbem\Repository ����ѡ�
-* ���� ISO���ý��棬���������Ƿ���ʾ "Press any key to boot from CD or DVD."��
-* �Ľ� �h�� ��Ч��BitLocker�˵���
-* �Ľ� RNDIS������ĳЩ�豸���޷��������������⡣
-* ���� ���������˵�����Ϊ�����ơ���
-* �޸� ��Administrator�û��·�����Դ������ʱ��Ŀ¼չ�����ٵ����⡣
-* ����ϸ�ڸ��¡�
+* 新增 Ghost15支持补丁。(_CustomFiles_\MyCustom_Samples\Requirements_Ghost15.bat)
+* 修复 使用zh-TW系统源构建时，安全精简选项有效后无法登陆Administrator用户的问题。
+* 修复 构建老版本(<17763)系统源时，部分系统文件没有提取问题。
+* 修复 构建老版本系统源时，文件属性无法弹出问题。
+* 新增 _CustomFiles_\MyCustom\Last目录，简易补丁可以放置在此目录，各补丁main.bat结束后调用。
+* 新增 _NavPaneShowAllFolders.bat 文件夹选项设置。
+* 新增 _NavPaneHideLibraries.bat 文件夹选项设置。
+* 修复  无法从系统中复制文件到手机的问题(MTP)。
+* 新增 精简选项(使用精简的imageres.dll)。
+* 新增 _FileExplorerInSeparateProcess.bat，外壳与文件资源管理器作为独自进程运行。
+* 改进 网络组件对老版本系统的支持。
+* 新增 _HighPerformancePowerScheme.bat，电源管理中使用高性能模式。
+* 新增 _CustomVisualEffects.reg，使用自定义视觉效果。
+* 修复 StartIsBack在最新预览版中导致外壳程序崩溃的问题。
+* 更新 设备与打印机组件，打印机功能支持到最新版。
+* 新增 命令行接口，可通过自动构建，详细参数请输入--help进行查看。
+* 改进 自定义补丁可制作复杂选项。
+* 新增 7-zip界面，可以设置扩展名关联。
+* 修复 不勾选网络支持时，防火墙没有禁用问题。
+* 新增 _Assets_\style.css 文件，支持各补丁界面共同的式样定义。
+* 新增 ImDisk虚拟磁盘驱动。
+* 改进 多会话模式下对外壳进程进行守护。
+* 新增 删除 wbem\Repository 精简选项。
+* 新增 ISO设置界面，可以设置是否提示 "Press any key to boot from CD or DVD."。
+* 改进 刪除 无效的BitLocker菜单。
+* 改进 RNDIS功能在某些设备下无法正常工作的问题。
+* 更新 【补丁】菜单改名为【定制】。
+* 修复 在Administrator用户下访问资源管理器时，目录展开卡顿的问题。
+* 其他细节更新。
 
 
 ## WimBuilder2 v2019.10.10
-����һ����Ҫ���¡����Ӻ͸�������������:
+这是一个主要更新。添加和改善了以下内容:
 
-* ���� LinkToDesktop, LinkToStartMenu, PinToStartMenu, PinToTaskbar �����
-* ���� Startup\BeforeShell Ŀ¼�ӿڣ���Ŀ¼�µĽű�������ǳ�������ǰ���С�
-* ���� ����ȫ���� ѡ��h�����壬�������ҵ������̲��֣�Ǩ�ƹ��ߵȲ�Ӱ�����������ϵͳ�ļ���
-* ���� ���Ƴ�ieframe.dll��ѡ�
-* ���� ���Ƴ�WinREϵͳ�����޸�����(X:\sources)��ѡ�
-* �޸� ΢���������뷨 �޷���ʾ��ѡ�������⡣
-* ���� ��DRIVERSע�������ѡ����Զ�ʶ�����ϵͳ�Դ�����(��MTP������������)��
-* ���� RNDIS���ܣ�USB�����ֻ���ʹ���ֻ��������硣
-* ���� ͬ��WIN10XPE-2019-09-20�������ݡ�
-* �޸� ����MSI����ʱ���޷����й���Ա�ʻ���¼���⡣
-* �Ľ� ����ѡ��Ĭ��ֵ���ڲ���Ŀ¼�ж��壬����Ҫ�ٸ���Ԥ���嵥�и���(������������ǿ)��
-* ���� �ҵ�����(_CustomFiles_\MyTheme)�������ӣ����Զ��岻ͬ����ʽ������ֽ����Ч���������ֵȡ�
-* �Ľ� ����Ա�û���¼����������ʼ���ű��ֽ⣬ʹ�ò�ͬ�������������á�
-* ���� �Զ������Ա��ѡ�
-* ���� ��Դ����������(za-Slim\SlimResources)���Ƴ�Display.dll, themecpl.dll�Ҳ�Ӱ�칦�ܡ�
-* ���� ʹ��ϵͳ�������ƽ��20H1֮���޷�����Ա�û��޷������û��趨���⡣
-* �޸� 20H1֮��BitLocker�����˵��޷��Զ�ʶ�����⡣
-* �޸� ��ӡ������޷�����ʹ�����⡣(<=17763�İ汾, ����ʹ�����ú͵�������ӡ��)
-* �޸� 20H1֮���ı��ĵ��޷�ֱ�Ӵ򿪣��Լ�û���½��ı��ĵ����⡣
-* ���� vendor\WinXShellΪ4.2�汾��
-* ���� ��WinXShell 4.2������Session�������ܣ�ʵ�ֶ��û������л�����(SYSTEM<=>����Ա�ʻ�)��
-* ���� ��WinXShell 4.2���£��������ļ����ļ���ѡ��趨(��ʾ/����ʾ�����ļ�����ʾ/����ʾ��֪��չ��)��
-* ���� WinXShell����ҳ�档(����UI_Volume������UI_WIFIѡ��)
-* ���� ϵͳ�������磬����ͼ����ʾѡ�
-* �Ľ� �ϰ汾Win10(v1607 ���ڷ����֧ (LTSB) 14393)����֧�֡�(��л liuzhaoyzz �����뷴��)
-* ���� vendor\StartIsBackΪ2.8.9�汾��
-* ���� doc\History.txt��˵���ļ���
+* 新增 LinkToDesktop, LinkToStartMenu, PinToStartMenu, PinToTaskbar 宏命令。
+* 新增 Startup\BeforeShell 目录接口，此目录下的脚本将在外壳程序启动前运行。
+* 新增 【安全精简】 选项，刪除字体，其他国家地区键盘布局，迁移工具等不影响其他组件的系统文件。
+* 新增 【移除ieframe.dll】选项。
+* 新增 【移除WinRE系统故障修复程序(X:\sources)】选项。
+* 修复 微软内置输入法 无法显示候选文字问题。
+* 新增 对DRIVERS注册表处理选项，可自动识别加载系统自带驱动(如MTP，网卡驱动等)。
+* 新增 RNDIS功能，USB连接手机可使用手机共享网络。
+* 更新 同步WIN10XPE-2019-09-20更新内容。
+* 修复 启用MSI功能时，无法进行管理员帐户登录问题。
+* 改进 补丁选项默认值可在补丁目录中定义，不需要再各个预设清单中更新(补丁独立性增强)。
+* 添加 我的主题(_CustomFiles_\MyTheme)补丁例子，可自定义不同主题式样，壁纸，音效，开机音乐等。
+* 改进 管理员用户登录，及启动初始化脚本分解，使得不同启动管理器共用。
+* 新增 自定义管理员名选项。
+* 新增 资源精简处理例子(za-Slim\SlimResources)，移除Display.dll, themecpl.dll且不影响功能。
+* 更新 使用系统自身机制解决20H1之后无法管理员用户无法加载用户设定问题。
+* 修复 20H1之后BitLocker解锁菜单无法自动识别问题。
+* 修复 打印机组件无法正常使用问题。(<=17763的版本, 可以使用内置和第三方打印机)
+* 修复 20H1之后文本文档无法直接打开，以及没有新建文本文档问题。
+* 更新 vendor\WinXShell为4.2版本。
+* 新增 随WinXShell 4.2新增的Session管理功能，实现多用户自由切换功能(SYSTEM<=>管理员帐户)。
+* 新增 随WinXShell 4.2更新，新增【文件及文件夹选项】设定(显示/不显示隐藏文件，显示/不显示已知扩展名)。
+* 新增 WinXShell设置页面。(启用UI_Volume，启用UI_WIFI选项)
+* 新增 系统托盘网络，声音图标显示选项。
+* 改进 老版本Win10(v1607 长期服务分支 (LTSB) 14393)构建支持。(感谢 liuzhaoyzz 测试与反馈)
+* 更新 vendor\StartIsBack为2.8.9版本。
+* 新增 doc\History.txt本说明文件。
 
 ## WimBuilder2 v2019.09.01.1c7003cc

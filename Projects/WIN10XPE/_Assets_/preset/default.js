@@ -21,8 +21,6 @@ var $patches_opt = {
     "component.vcruntime":true,
     "component.mspaint":true,
     "component.winphotoviewer":true,
-    "IME.indicator":true,
-    "IME.system_ime":true,
     "IE.x64_component":"x64+x86",
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",
@@ -37,12 +35,12 @@ function patches_state_init() {
     select_tree_node('_CustomFiles_');
     open_tree_node('00-Configures');
     uncheck_tree_node('02-Apps');
+    uncheck_tree_node('02-PEMaterial');
     uncheck_tree_node('01-Components');
     check_tree_node('01-Components/00-Shell');
     check_tree_node('01-Components/IME');
     check_tree_node('01-Components/za-Accessories');
     open_tree_node('01-Components');
-    uncheck_tree_node('za-SlimExtra');
 }
 
 

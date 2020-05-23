@@ -1,3 +1,5 @@
+if not "x%opt[shell.startmenu]%"=="xStartIsBack" goto :EOF
+
 call V2X StartIsBack -extract StartIsBackPlusPlus_setup[v*].exe "%X_PF%\StartIsBack"
 
 if not exist "%X%\Program Files\StartIsBack\StartIsBack64.dll" goto :EOF
@@ -6,9 +8,8 @@ if not "%WB_PE_ARCH%"=="x64" del /f "%X%\Program Files\StartIsBack\StartIsBack64
 reg import "%~dp0SIB_RegDefault.reg"
 reg import "%~dp0SIB_RegSoftware.reg"
 
-if %VER[3]% GTR 19000 (
-    reg add HKLM\Tmp_Default\Software\StartIsBack /v TaskbarJumpList /t REG_DWORD /d 0 /f
-)
+rem disable Win32 tray clock
+reg add HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell /v UseWin32TrayClockExperience /t REG_DWORD /d 0 /f
 
 if "%WB_PE_ARCH%"=="x64" (
     if not "x%opt[build.wow64support]%"=="xtrue" (

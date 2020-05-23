@@ -8,6 +8,55 @@ var _patch_updater = [];
 var _saved_current_preset = true;
 var _jstree_selected_node = null;
 
+function patches_page_init() {
+    var dialog, form,
+      name = $("#preset_saveas_name"),
+      namelist = $("#preset_name_list");
+
+    function saveAsPreset() {
+      var valid = true;
+      if ( valid ) {
+        if (!$app_save_current_preset) return false;
+        save_current_preset(true);
+        saveas_current_preset($obj_project, name.val());
+        dialog.dialog("close");
+      }
+      return valid;
+    }
+
+    dialog = $("#preset-saveas-dialog").dialog({
+      autoOpen: false, height: 400, width: 420, modal: true,
+      title: i18n_t('SaveAs Preset'),
+      buttons: [
+        {
+          text: i18n_t('Save'),
+          click: function() {
+            saveAsPreset();
+        }},
+        {
+          text: i18n_t('Cancel'),
+          click: function() {
+            dialog.dialog("close"); 
+        }}]
+    });
+
+    form = dialog.find("form").on("submit", function(event) {
+      event.preventDefault();
+      saveAsPreset();
+    });
+
+    $("#preset_saveas").button().on("click", function() {
+      dialog.dialog("open");
+      namelist.empty();
+      var presets_str = "";
+      $obj_project.presets.forEach(function(preset) {
+        var preset_name = preset.slice(0, -3);
+        presets_str += preset_name + " (" + i18n_t(preset_name) + ")\r\n";
+      });
+      namelist.text(presets_str);
+    });
+}
+
 function init_radio_opt(elem, patches_opt) {
     var key = $(elem).attr('name');
     if (key in patches_opt) {
@@ -127,7 +176,7 @@ function update_patches_opt(patches_opt, keep_updater) {
         var key = $(this).attr('name');
         patches_opt[key] = $(this).val();
     } else if (type == 'select') {
-        var val = $(this).children("option:selected").text();
+        var val = $(this).children("option:selected").val();
         patches_opt[key] = val;
     } else if  (type == 'spinbutton') {
         patches_opt[key] = $(this).spinner("value");
@@ -166,7 +215,7 @@ function patch_onselect(id) {
         need_init = true;
     }
     $('#patch_html').html(content);
-    if (need_init) init_patches_opt($patches_opt, $obj_project.wb_root + '/' + patch.path);
+    if (need_init) init_patches_opt($patches_opt, $obj_project.app_root + '/' + patch.path);
     //show_patches_opt($patches_opt);
 }
 
@@ -215,8 +264,8 @@ function edit_menu_action(file) {
   Run(editor, '\"' + file + '\"', style);
 }
 
-function update_preset_list() {
-    if ($patches_preset_inited) return;
+function update_preset_list(force) {
+    if (!force && $patches_preset_inited) return;
 
     var preset_selected = false;
     $('#patch_preset').empty();
@@ -354,14 +403,14 @@ function dump_patches_opt() {
     var str = '', opt_str = '', rep_str = '';
     for(var key in options) {
         opt_str = "set \"opt[" + key + "]=" + options[key] + "\"\r\n";
-        rep_str = opt_str.replace($wb_root + '\\', "%%WB_ROOT%%\\");
+        rep_str = opt_str.replace($app_root + '\\', "%%APP_ROOT%%\\");
 
         if (opt_str != rep_str) {
             opt_str = 'call ' + rep_str;
         }
         str += opt_str;
     }
-    //str = str_replace(str, $wb_root + '\\', "%%WB_ROOT%%\\");
+    //str = str_replace(str, $app_root + '\\', "%%APP_ROOT%%\\");
     save_text_file(tmp_folder + "\\_patches_opt.bat", str);
     return str;
 }
@@ -420,7 +469,7 @@ function get_jstree_status(){
 
 function save_current_preset(collected){
     if (!$obj_project) return;
-    if (!$wb_save_current_preset) return;
+    if (!$app_save_current_preset) return;
     if (_saved_current_preset) return;
 
     if (!collected) {

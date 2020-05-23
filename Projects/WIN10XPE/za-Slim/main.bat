@@ -9,6 +9,8 @@ rd /s /q "%X_SYS%\DiagSvcs"
 del /f /a /q "%X_SYS%\diagER.dll"
 del /f /a /q "%X_SYS%\diagtrack.dll"
 
+if "x%opt[slim.winre_sources]%"=="xtrue" rd /s /q "%X%\sources"
+
 rem //-
 rem // WMI Repository will be rebuilt, refresh at startup
 if "x%opt[slim.wbem_repository]%"=="xtrue" (
@@ -19,11 +21,12 @@ if "x%opt[slim.wbem_repository]%"=="xtrue" (
   rd /s /q "%X_SYS%\wbem\xml"
 )
 
-rem replace small files
-
+if "x%WB_PE_LANG%"=="xzh-TW" set opt[slim.font.mingliu]=false
 if "x%opt[slim.font.mingliu]%"=="xtrue" (
   del /f /a /q "%X_WIN%\Fonts\mingliu.ttc"
 )
+
+rem replace small files
 
 if "x%opt[slim.small_fonts]%"=="xtrue" (
   for /f "delims=" %%i in ('dir /b "%V%\CustomResources\SmallFonts"') do (
@@ -157,7 +160,7 @@ if "x%opt[slim.winboot]%"=="xtrue" (
 )
 
 call Slim_Safely.bat
-call Slim_Ultra.bat
+call Slim_Extra.bat
 
 rem already removed in _pre_wim.bat
 goto :EOF

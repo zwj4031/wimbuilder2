@@ -52,7 +52,7 @@ var $patches_opt = {
     "slim.hta":false,
     "slim.wmi":false,
     "slim.speech":false,
-    "slim.ultra":false,
+    "slim.extra":false,
     "_._._":""
 };
 
@@ -62,7 +62,6 @@ function patches_state_init() {
     open_tree_node('00-Configures');
     open_tree_node('01-Components');
     uncheck_tree_node('za-Slim');
-    //uncheck_tree_node('za-SlimExtra');
 }
 
 
